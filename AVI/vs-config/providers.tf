@@ -14,13 +14,13 @@ terraform {
 provider "avi" {
   avi_username = "ksourangshu"
   avi_tenant = var.tenant
-  avi_password = "Abhi@apr2022"
+  avi_password = "Password"
   avi_controller = "avi-controller-eat1.vmware.com"
   avi_version = "20.1.4"
 } 
 provider "infoblox" {
     username = "ksourangshu"
-    password = "Abhi@apr2022"
+    password = "Password"
     server = "10.166.16.127"
     sslmode = false
 }

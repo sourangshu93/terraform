@@ -12,7 +12,7 @@ terraform {
 }
 provider "vcd" {
     user                 = "local.vra"
-    password             = "local.vra"
+    password             = "Password"
     auth_type            = "integrated" 
     org                  = var.orgName
     vdc                  = var.vdcName
@@ -21,8 +21,8 @@ provider "vcd" {
     allow_unverified_ssl = "true"
 }
 provider "infoblox" {
-    username = "svc.devopsapi"
-    password = "gZ@Bp9NGCb^i!^q323^"
+    username = "svc.user"
+    password = "Password"
     server = "10.166.16.127"
     sslmode = false
 }

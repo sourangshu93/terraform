@@ -1,13 +1,3 @@
-provider "vcd" {
-    user                 = "local.vra"
-    password             = "local.vra"
-    auth_type            = "integrated" 
-    org                  = var.orgName
-    vdc                  = var.vdcName
-    url                  = "https://wdc-vcd05.oc.vmware.com/api"
-    max_retry_timeout    = "60"
-    allow_unverified_ssl = "true"
-}
 resource "vcd_vapp" "terraform_vapp" {
   name = "${var.vm_name}-Vapp"
 }
@@ -45,12 +35,7 @@ resource "vcd_vm_internal_disk" "disk1" {
   unit_number     = 4
   depends_on      = [vcd_vapp_vm.terraform_vm]
 }
-provider "infoblox" {
-    username = "svc.devopsapi"
-    password = "gZ@Bp9NGCb^i!^q323^"
-    server = "10.166.16.127"
-    sslmode = false
-}
+
 resource "infoblox_ipv4_allocation" "allocation1" {
     network_view = "default"
     dns_view = "default"
