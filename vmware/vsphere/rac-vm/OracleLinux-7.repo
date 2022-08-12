@@ -1,0 +1,17 @@
+[OracleLinux-7-Latest]
+name=OracleLinux 7 Latest
+baseurl=https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/
+enabled=1
+gpgcheck=0
+
+[OracleLinux-7-UEK4]
+name=OracleLinux 7 UEK4
+baseurl=http://yum.oracle.com/​repo/​OracleLinux/​OL7/​UEKR4/​x86_64
+enabled=1
+gpgcheck=0
+
+[OracleLinux-7-UEK5]
+name=OracleLinux 7 UEK5
+baseurl=http://yum.oracle.com/​repo/​OracleLinux/​OL7/​UEKR5/​x86_64
+enabled=1
+gpgcheck=0

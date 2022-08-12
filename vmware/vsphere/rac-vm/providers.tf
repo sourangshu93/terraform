@@ -11,14 +11,14 @@ terraform {
   }
 }
 provider "vsphere" {
-  user           = "user"
-  password       = "Password"
-  vsphere_server = "wdc-01-vc14.oc.vmware.com"
+  user           = "svc.devopsapi@vmware.com"
+  password       = "gZ@Bp9NGCb^i!^q323^"
+  vsphere_server = "vc-prompaix-2.vmware.com"
   allow_unverified_ssl = true
 }
 provider "infoblox" {
-    username = "user"
-    password = "Password"
+    username = "svc.devopsapi"
+    password = "gZ@Bp9NGCb^i!^q323^"
     server = "10.166.16.127"
     sslmode = false
 }

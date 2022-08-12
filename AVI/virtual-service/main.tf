@@ -27,7 +27,7 @@ resource "infoblox_ipv4_allocation" "vs_ip_allocation" {
     network_view = "default"
     dns_view = "default"
     cidr = "10.148.80.0/22"
-    fqdn = "${var.vs_name}-vip.vmware.com"
+    fqdn = "${var.vs_name}-vip.example.com"
     enable_dns = true
     enable_dhcp = false
 }
@@ -84,8 +84,8 @@ resource "avi_virtualservice" "nsxalb-vs" {
 }
 resource "infoblox_cname_record" "vip_cname_record"{
   dns_view = "default"
-  canonical = "${var.vs_name}-vip.vmware.com"
-  alias = "${var.vs_name}.vmware.com"
+  canonical = "${var.vs_name}-vip.example.com"
+  alias = "${var.vs_name}.example.com"
   ttl = 3600
 
   comment = "Test CNAME record from Terraform"
