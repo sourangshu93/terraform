@@ -2,14 +2,14 @@ data "avi_tenant" "nsxalb_tenant"{
     name = var.tenant
 }
 data "avi_cloud" "nsxalb_cloud" {
-    name = "CLOUD-EAT1-ONECLOUD-1"
+    name = var.cloud
 }
 data "avi_vrfcontext" "nsxalb_vrf" {
-    name = "VRF-EAT1-ONECLOUD-1"
+    name = var.vrf
     cloud_ref = data.avi_cloud.nsxalb_cloud.id
 }
 data "avi_serviceenginegroup" "nsxalb_se" {
-    name = "SEG-EAT1-ONECLOUD-1"
+    name = var.seg
 }
 data "avi_healthmonitor" "nsxalb_monitor" {
   name = "TCP-120"
@@ -26,8 +26,8 @@ data "avi_networkprofile" "nsxalb_netprofile" {
 resource "infoblox_ipv4_allocation" "vs_ip_allocation" {
     network_view = "default"
     dns_view = "default"
-    cidr = "10.148.80.0/22"
-    fqdn = "${var.vs_name}-vip.example.com"
+    cidr = var.cidr
+    fqdn = "${var.vs_name}-vip.domain.com"
     enable_dns = true
     enable_dhcp = false
 }
@@ -52,17 +52,17 @@ resource "avi_pool" "nsxalb_pool" {
   vrf_ref               = data.avi_vrfcontext.nsxalb_vrf.id
   default_server_port   = 80
   lb_algorithm          = local.lb
-  #application_persistence_profile_ref= "${avi_applicationpersistenceprofile.test_applicationpersistenceprofile.id}"
+  application_persistence_profile_ref= "${avi_applicationpersistenceprofile.test_applicationpersistenceprofile.id}"
   servers {
       ip {
           type = "V4"
-          addr = "10.148.70.32"
+          addr = var.ip_address[0]
         }
     }
   servers {
       ip {
           type = "V4"
-          addr = "10.148.70.33"
+          addr = var.ip_address[1]
       }
   }
 }
@@ -84,8 +84,8 @@ resource "avi_virtualservice" "nsxalb-vs" {
 }
 resource "infoblox_cname_record" "vip_cname_record"{
   dns_view = "default"
-  canonical = "${var.vs_name}-vip.example.com"
-  alias = "${var.vs_name}.example.com"
+  canonical = "${var.vs_name}-vip.domain.com"
+  alias = "${var.vs_name}.domain.com"
   ttl = 3600
 
   comment = "Test CNAME record from Terraform"
